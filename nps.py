@@ -18,13 +18,14 @@ def nps(series):
 
     return int(100 * (promoters.sum() / total - detractors.sum() / total))
 
-df = pd.read_csv('nps-developer-survey.csv')
+if __name__ == '__main__':
+    df = pd.read_csv('nps.csv')
 
-# Sometimes only looking at a segment
-filtered = df
-# filtered = df.loc[df['Business'] == 'foo']
+    # Sometimes only looking at a segment
+    filtered = df
+    # filtered = df.loc[df['Business'] == 'foo']
 
-# Just dump to stdout descriptive statistics along with nps for each sample
-for col in df.columns[1:]:
-    series = filtered[col].dropna()
-    print(col, series.count(), series.mean(), series.std(), nps(series))
+    # Just dump to stdout descriptive statistics along with nps for each sample
+    for col in df.columns[1:]:
+        series = filtered[col].dropna()
+        print(col, series.count(), series.mean(), series.std(), nps(series))
