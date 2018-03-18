@@ -2,9 +2,10 @@
 import numpy as np
 import pandas as pd
 
-def nps_score(series):
+def nps(series):
     """
-    Net Promoter Score^R (NPS^R)
+    Net Promoter Score(R)
+    http://www.netpromotersystem.com/resources/trademarks-and-licensing.aspx
 
     Subtract percentage of promoters from percentage of detractors.
     - Detractors - 6 and below
@@ -23,8 +24,7 @@ df = pd.read_csv('nps-developer-survey.csv')
 filtered = df
 # filtered = df.loc[df['Business'] == 'foo']
 
-# Just dump to stdout descriptive statistics along with nps score for each
-# collection
+# Just dump to stdout descriptive statistics along with nps for each sample
 for col in df.columns[1:]:
     series = filtered[col].dropna()
-    print(col, series.count(), series.mean(), series.std(), nps_score(series))
+    print(col, series.count(), series.mean(), series.std(), nps(series))
